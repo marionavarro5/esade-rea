@@ -126,11 +126,11 @@
     .announcement-bar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 201;
       height: var(--bar-h);
-      background: #000B3D;
-      border-bottom: 1px solid rgba(255,255,255,.05);
+      background: #535D7B;
+      border-bottom: 1px solid rgba(255,255,255,.1);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--fm); font-size: .58rem; letter-spacing: .22em;
-      text-transform: uppercase; color: rgba(237,233,227,.38);
+      text-transform: uppercase; color: rgba(255,255,255,.7);
       white-space: nowrap; overflow: hidden;
     }
 
@@ -162,7 +162,8 @@
     .nav-logo-img {
       height: 34px; width: auto;
       filter: invert(1);
-      opacity: .88;
+      mix-blend-mode: screen;
+      opacity: 1;
       flex-shrink: 0;
     }
     .nav-links {
@@ -324,7 +325,7 @@
       font-weight: 500;
       line-height: 1;
       margin-bottom: .4rem;
-      color: var(--gold);
+      color: #C6C6C6;
     }
     .stat-label {
       font-size: .72rem;
