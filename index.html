@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ESADE Real Estate Association</title>
+  <meta name="description" content="The student real estate association at ESADE Business School, Barcelona. Connecting future professionals with institutional capital markets, real assets, and private investment.">
+  <meta property="og:title" content="ESADE Real Estate Association">
+  <meta property="og:description" content="Where finance meets real assets. The student association at ESADE Business School, Barcelona.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- tokens ---------- */
+    :root {
+      --bg:          #09090f;
+      --bg-2:        #111119;
+      --bg-3:        #181824;
+      --text:        #eeedeb;
+      --text-2:      #88888f;
+      --text-3:      #44444a;
+      --accent:      #2563eb;
+      --accent-soft: rgba(37,99,235,.12);
+      --accent-h:    #1d4ed8;
+      --border:      rgba(255,255,255,.07);
+      --border-2:    rgba(255,255,255,.14);
+      --fd:          'Space Grotesk', sans-serif;
+      --fb:          'DM Sans', sans-serif;
+      --r:           8px;
+      --wrap:        1240px;
+      --pad:         clamp(1.25rem, 5vw, 2.5rem);
+    }
+
+    /* ---------- reset ---------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- utils ---------- */
+    .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .65rem 1.35rem;
+      border-radius: var(--r);
+      font-family: var(--fd);
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .01em;
+      transition: background .18s, border-color .18s, transform .15s, color .15s;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-sm { padding: .5rem 1rem; font-size: .8rem; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-h); transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border-2);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.04); }
+
+    /* ---------- nav ---------- */
+    .nav {
+      position: sticky; top: 0;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 100;
+      background: rgba(9,9,15,.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: var(--fd); font-size: 1rem; font-weight: 600;
+      letter-spacing: .01em;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .nav-logo-mark {
+      width: 28px; height: 28px;
+      background: var(--accent); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 700; color: #fff;
+      flex-shrink: 0; letter-spacing: .04em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-size: .855rem; color: var(--text-2);
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: .7rem; }
+    .burger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: .25rem; flex-direction: column; gap: 5px;
+    }
+    .burger span {
+      display: block; width: 21px; height: 1.5px;
+      background: var(--text); border-radius: 1px;
+      transition: .25s;
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      min-height: calc(100dvh - 68px);
+      display: flex; flex-direction: column; justify-content: center;
+      padding-block: clamp(3.5rem, 8vh, 6rem);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 900px 700px at 65% 45%, rgba(37,99,235,.055) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 4rem; align-items: center;
+    }
+    .hero-kicker {
+      font-family: var(--fd); font-size: .72rem;
+      font-weight: 500; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--text-2);
+      margin-bottom: 1.5rem;
+    }
+    .hero-h1 {
+      font-family: var(--fd);
+      font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -.025em;
+      margin-bottom: 1.4rem;
+    }
+    .hero-h1 em { color: var(--accent); font-style: normal; }
+    .hero-sub {
+      font-size: 1.025rem; color: var(--text-2);
+      max-width: 50ch; line-height: 1.72;
+      margin-bottom: 2.25rem;
+    }
+    .hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; }
+    .hero-stats {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.75rem 1.25rem;
+    }
+    .stat-num {
+      font-family: var(--fd);
+      font-size: 2.4rem; font-weight: 700;
+      letter-spacing: -.03em; line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .stat-label {
+      font-size: .76rem; color: var(--text-2);
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+
+    /* ---------- manifesto ---------- */
+    .manifesto {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      border-bottom: 1px solid var(--border);
+    }
+    .manifesto-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .manifesto-tag {
+      font-family: var(--fd); font-size: .7rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+    }
+    .manifesto-statement {
+      font-family: var(--fd);
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 600; line-height: 1.28;
+      letter-spacing: -.02em;
+    }
+    .manifesto-right { padding-top: 3.75rem; }
+    .manifesto-body {
+      font-size: .95rem; color: var(--text-2);
+      line-height: 1.82; margin-bottom: 1.1rem;
+    }
+
+    /* ---------- section header ---------- */
+    .sec-header { margin-bottom: 2.75rem; }
+    .sec-title {
+      font-family: var(--fd);
+      font-size: clamp(1.75rem, 3vw, 2.6rem);
+      font-weight: 700; letter-spacing: -.022em; line-height: 1.1;
+    }
+
+    /* ---------- events ---------- */
+    .events {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      border-bottom: 1px solid var(--border);
+    }
+    .events-featured {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 1px;
+    }
+    .event-hero-img {
+      aspect-ratio: 4/3; object-fit: cover; width: 100%; height: 100%;
+    }
+    .event-hero-body {
+      background: var(--bg-2); padding: 2.5rem 2.25rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .event-badge {
+      display: inline-flex; align-items: center;
+      background: var(--accent-soft); color: var(--accent);
+      font-family: var(--fd); font-size: .68rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .28rem .65rem; border-radius: 4px;
+      margin-bottom: 1.2rem; width: fit-content;
+    }
+    .event-hero-name {
+      font-family: var(--fd); font-size: 1.55rem;
+      font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: .8rem; line-height: 1.2;
+    }
+    .event-hero-desc {
+      font-size: .88rem; color: var(--text-2);
+      line-height: 1.72; margin-bottom: 1.5rem;
+    }
+    .event-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .event-meta-item {
+      font-size: .72rem; text-transform: uppercase;
+      letter-spacing: .09em; color: var(--text-3);
+    }
+    .event-meta-item strong {
+      display: block; color: var(--text-2); font-size: .82rem;
+      font-weight: 500; text-transform: none; letter-spacing: 0;
+    }
+    .events-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 1px;
+    }
+    .event-card {
+      background: var(--bg-2); padding: 1.65rem;
+      border-right: 1px solid var(--border);
+    }
+    .event-card:last-child { border-right: none; }
+    .event-card:nth-child(n+4) { border-top: 1px solid var(--border); }
+    .event-icon {
+      width: 34px; height: 34px; border-radius: 7px;
+      background: var(--bg-3);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .event-icon svg { width: 17px; height: 17px; stroke: var(--text-2); }
+    .event-name {
+      font-family: var(--fd); font-size: .96rem;
+      font-weight: 600; margin-bottom: .5rem; line-height: 1.3;
+    }
+    .event-desc { font-size: .83rem; color: var(--text-2); line-height: 1.65; }
+
+    /* ---------- partners ---------- */
+    .partners {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      border-bottom: 1px solid var(--border);
+    }
+    .partners-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 2.75rem;
+    }
+    .partner-cell {
+      background: var(--bg-2);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.4rem 1rem; min-height: 74px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .partner-cell:hover { background: var(--bg-3); }
+    .partner-cell:nth-child(5n) { border-right: none; }
+    .partner-cell:nth-child(n+11) { border-bottom: none; }
+    .partner-name {
+      font-family: var(--fd); font-size: .72rem; font-weight: 600;
+      letter-spacing: .055em; text-transform: uppercase;
+      color: var(--text-2); text-align: center; line-height: 1.3;
+    }
+
+    /* ---------- alumni ---------- */
+    .alumni {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      border-bottom: 1px solid var(--border);
+    }
+    .alumni-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .alumni-intro {
+      font-family: var(--fd);
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      font-weight: 600; line-height: 1.3;
+      letter-spacing: -.02em;
+      margin-top: 1.5rem; margin-bottom: 1.2rem;
+    }
+    .alumni-body { font-size: .9rem; color: var(--text-2); line-height: 1.8; }
+    .alumni-firms {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .alumni-firm {
+      background: var(--bg-2); padding: 1rem 1.2rem;
+      font-family: var(--fd); font-size: .84rem; font-weight: 500;
+      color: var(--text-2);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: color .15s, background .15s;
+    }
+    .alumni-firm:nth-child(2n) { border-right: none; }
+    .alumni-firm:nth-last-child(-n+2) { border-bottom: none; }
+    .alumni-firm:hover { color: var(--text); background: var(--bg-3); }
+
+    /* ---------- team ---------- */
+    .team {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      border-bottom: 1px solid var(--border);
+    }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; margin-top: 2.75rem;
+    }
+    .team-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color .18s;
+    }
+    .team-card:hover { border-color: var(--border-2); }
+    .team-photo {
+      aspect-ratio: 3/2; object-fit: cover; width: 100%;
+      filter: grayscale(15%);
+    }
+    .team-body { padding: 1.15rem 1.2rem 1.3rem; }
+    .team-name {
+      font-family: var(--fd); font-size: .95rem;
+      font-weight: 600; margin-bottom: .2rem;
+    }
+    .team-role { font-size: .78rem; color: var(--accent); margin-bottom: .35rem; }
+    .team-program { font-size: .73rem; color: var(--text-3); }
+
+    /* ---------- contact ---------- */
+    .contact {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2.75rem;
+    }
+    .contact-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 2.25rem;
+    }
+    .contact-label {
+      font-family: var(--fd); font-size: .68rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--text-3); margin-bottom: .9rem;
+    }
+    .contact-title {
+      font-family: var(--fd); font-size: 1.35rem;
+      font-weight: 700; letter-spacing: -.018em;
+      margin-bottom: .8rem;
+    }
+    .contact-body {
+      font-size: .875rem; color: var(--text-2);
+      line-height: 1.72; margin-bottom: 1.65rem;
+    }
+    .contact-detail {
+      display: flex; align-items: center; gap: .55rem;
+      font-size: .82rem; color: var(--text-2); margin-top: .9rem;
+    }
+    .contact-detail svg {
+      width: 14px; height: 14px; stroke: var(--text-3); flex-shrink: 0;
+    }
+
+    /* ---------- footer ---------- */
+    .footer {
+      padding-block: 2.5rem;
+      padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.25rem;
+    }
+    .footer-brand {
+      font-family: var(--fd); font-size: .82rem; color: var(--text-2); line-height: 1.6;
+    }
+    .footer-links {
+      display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: .78rem; color: var(--text-3); transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--text-2); }
+    .footer-social { display: flex; gap: .65rem; }
+    .social-btn {
+      width: 33px; height: 33px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .15s, background .15s;
+    }
+    .social-btn:hover { border-color: var(--border-2); background: rgba(255,255,255,.03); }
+    .social-btn svg { width: 14px; height: 14px; stroke: var(--text-2); }
+
+    /* ---------- sticky cta ---------- */
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      padding: .8rem var(--pad);
+      padding-bottom: calc(.8rem + env(safe-area-inset-bottom, 0px));
+      background: rgba(9,9,15,.93);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 1rem;
+      transform: translateY(100%);
+      transition: transform .3s ease;
+    }
+    .sticky-cta.shown { transform: translateY(0); }
+    .sticky-cta-label {
+      font-family: var(--fd); font-size: .82rem; color: var(--text-2);
+      display: none; flex: 1;
+    }
+    .sticky-cta-actions { display: flex; gap: .65rem; margin-left: auto; }
+
+    /* ---------- reveal ---------- */
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { max-width: 420px; }
+      .manifesto-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .manifesto-right { padding-top: 0; }
+      .events-featured { grid-template-columns: 1fr; }
+      .alumni-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .partners-grid { grid-template-columns: repeat(3, 1fr); }
+      .partners-grid .partner-cell:nth-child(3n) { border-right: none; }
+      .partners-grid .partner-cell:nth-child(5n) { border-right: 1px solid var(--border); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; gap: 0;
+        position: absolute; top: 68px; left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: .25rem 0 .5rem;
+      }
+      .nav-links.open li a {
+        display: block; padding: .85rem var(--pad); font-size: .95rem;
+        color: var(--text-2);
+      }
+      .burger { display: flex; }
+      .nav-actions .btn-ghost { display: none; }
+      .events-grid { grid-template-columns: 1fr 1fr; }
+      .sticky-cta-label { display: block; }
+    }
+    @media (max-width: 480px) {
+      .events-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .partners-grid .partner-cell:nth-child(3n) { border-right: 1px solid var(--border); }
+      .partners-grid .partner-cell:nth-child(2n) { border-right: none; }
+      .alumni-firms { grid-template-columns: 1fr; }
+      .alumni-firm:nth-child(2n) { border-right: 1px solid var(--border); }
+      .alumni-firm:nth-last-child(-n+1) { border-bottom: none; }
+      .team-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .sticky-cta { transition: none; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" role="banner">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-logo" aria-label="ESADE Real Estate Association home">
+      <span class="nav-logo-mark" aria-hidden="true">RE</span>
+      <span>ESADE Real Estate</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-ghost btn-sm">Join Us</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Partner With Us</a>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="hero-h1">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-kicker">ESADE Business School &middot; Barcelona &middot; Founded 2020</p>
+      <h1 class="hero-h1" id="hero-h1">
+        Where Finance<br><em>Meets Real Assets</em>
+      </h1>
+      <p class="hero-sub">
+        The student association connecting ESADE's most ambitious talent with institutional capital markets, real estate, and private investment.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Partner With Us</a>
+        <a href="#about" class="btn btn-ghost">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-stats" aria-label="Association statistics">
+      <div>
+        <div class="stat-num">40</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div>
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Annual Events</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Industry Partners</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Nationalities</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="manifesto" id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="manifesto-grid reveal">
+      <div>
+        <p class="manifesto-tag">Our Premise</p>
+        <p class="manifesto-statement" id="about-h">
+          Real estate is not just a sector. It is a financial asset class, and ESADE students should engage with it at that level.
+        </p>
+      </div>
+      <div class="manifesto-right">
+        <p class="manifesto-body">
+          EREA operates at the intersection of investment, capital markets, ESG, proptech, and urban strategy. Our members engage directly with senior partners, fund managers, and developers through alumni-exclusive events before graduating.
+        </p>
+        <p class="manifesto-body">
+          ESADE's international profile and the depth of its Alumni Real Estate Club give EREA a reach and credibility that is difficult to replicate at any other institution in Spain.
+        </p>
+        <p class="manifesto-body">
+          We co-organise the annual Capital Markets Seminar with the ESADE Alumni Real Estate Club and the Urban Land Institute, and participate in The District, Spain's leading proptech and real estate investment congress.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events" aria-labelledby="events-h">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2 class="sec-title" id="events-h">Events and Initiatives</h2>
+    </div>
+
+    <div class="events-featured reveal">
+      <img
+        src="https://picsum.photos/seed/esade-barcelona-business-school/800/600"
+        alt="Students presenting investment case analysis at the ESADE Real Estate Challenge"
+        class="event-hero-img"
+        loading="lazy"
+        width="800" height="600"
+      >
+      <div class="event-hero-body">
+        <span class="event-badge">Flagship Event</span>
+        <h3 class="event-hero-name">ESADE Real Estate Challenge</h3>
+        <p class="event-hero-desc">
+          A one-week live investment case competition with senior professionals from Inmobiliaria Colonial, Anticipa (Blackstone), CBRE, and CONREN TRAMWAY. Teams build financial models, defend assumptions, and present to a jury of executives. Over 100 students have participated across editions.
+        </p>
+        <div class="event-meta">
+          <div class="event-meta-item">
+            Format
+            <strong>Live Case Competition</strong>
+          </div>
+          <div class="event-meta-item">
+            Duration
+            <strong>One Week</strong>
+          </div>
+          <div class="event-meta-item">
+            Scale
+            <strong>80-100 Participants</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="events-grid reveal">
+      <div class="event-card">
+        <div class="event-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75"/>
+          </svg>
+        </div>
+        <h3 class="event-name">Investment Competition</h3>
+        <p class="event-desc">Students act as investment managers, analysing opportunities and pitching directly to industry professionals. Partners include Vecturie, CBRE, JLL, and Engel &amp; Volkers.</p>
+      </div>
+      <div class="event-card">
+        <div class="event-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3"/>
+          </svg>
+        </div>
+        <h3 class="event-name">Capital Markets Seminar</h3>
+        <p class="event-desc">Co-organised with the ESADE Alumni Real Estate Club and Urban Land Institute, covering capital allocation, geopolitical risk, AI in real estate, and institutional investment strategy.</p>
+      </div>
+      <div class="event-card">
+        <div class="event-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/>
+          </svg>
+        </div>
+        <h3 class="event-name">ESADE Housing Fair</h3>
+        <p class="event-desc">Connecting ESADE's international student community with verified housing providers across Barcelona. Supported by Engel &amp; Volkers, Mimeisa, and ElDomi Living, with 130+ participants.</p>
+      </div>
+      <div class="event-card">
+        <div class="event-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/>
+          </svg>
+        </div>
+        <h3 class="event-name">Real Estate and the Law</h3>
+        <p class="event-desc">A joint initiative with ESADE's Law Society covering regulatory risk in residential investment, urban planning law, and the legal structuring of institutional transactions.</p>
+      </div>
+      <div class="event-card">
+        <div class="event-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+          </svg>
+        </div>
+        <h3 class="event-name">Asset and Construction Visits</h3>
+        <p class="event-desc">On-site exposure to live projects. This year: Almogavers 100 in Barcelona's 22@ district with CONREN TRAMWAY, covering ESG, office repositioning, and financing structures.</p>
+      </div>
+      <div class="event-card">
+        <div class="event-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+          </svg>
+        </div>
+        <h3 class="event-name">Recruitment Events</h3>
+        <p class="event-desc">Dedicated sessions where partner firms present directly to our membership. Past participants include Macc Residential (Cerberus Capital) and CONREN TRAMWAY.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" id="partners" aria-labelledby="partners-h">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2 class="sec-title" id="partners-h">Industry Partners</h2>
+    </div>
+    <div class="partners-grid reveal" aria-label="List of industry partners">
+      <div class="partner-cell"><span class="partner-name">CBRE</span></div>
+      <div class="partner-cell"><span class="partner-name">JLL</span></div>
+      <div class="partner-cell"><span class="partner-name">Inmobiliaria Colonial</span></div>
+      <div class="partner-cell"><span class="partner-name">CONREN TRAMWAY</span></div>
+      <div class="partner-cell"><span class="partner-name">Anticipa Real Estate</span></div>
+      <div class="partner-cell"><span class="partner-name">Clikalia</span></div>
+      <div class="partner-cell"><span class="partner-name">Engel &amp; Volkers</span></div>
+      <div class="partner-cell"><span class="partner-name">ElDomi</span></div>
+      <div class="partner-cell"><span class="partner-name">Mimeisa Asset Management</span></div>
+      <div class="partner-cell"><span class="partner-name">Cerberus Capital</span></div>
+      <div class="partner-cell"><span class="partner-name">Crandon Partners</span></div>
+      <div class="partner-cell"><span class="partner-name">Hogan Lovells</span></div>
+      <div class="partner-cell"><span class="partner-name">Urban Land Institute</span></div>
+      <div class="partner-cell"><span class="partner-name">Century 21</span></div>
+      <div class="partner-cell"><span class="partner-name">ESADE Alumni RE Club</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALUMNI OUTCOMES -->
+<section class="alumni" aria-labelledby="alumni-h">
+  <div class="wrap">
+    <div class="alumni-grid reveal">
+      <div>
+        <p class="manifesto-tag">Alumni Outcomes</p>
+        <h2 class="alumni-intro" id="alumni-h">
+          Our members go on to build careers at the world's leading financial institutions.
+        </h2>
+        <p class="alumni-body">
+          EREA alumni have secured internships and full-time roles spanning investment banking, alternative asset management, management consulting, and financial data services.
+        </p>
+      </div>
+      <div>
+        <div class="alumni-firms">
+          <div class="alumni-firm">Goldman Sachs</div>
+          <div class="alumni-firm">Morgan Stanley</div>
+          <div class="alumni-firm">Bank of America</div>
+          <div class="alumni-firm">Deutsche Bank</div>
+          <div class="alumni-firm">Nomura</div>
+          <div class="alumni-firm">Blackstone</div>
+          <div class="alumni-firm">Bloomberg</div>
+          <div class="alumni-firm">BCG</div>
+          <div class="alumni-firm">Oliver Wyman</div>
+          <div class="alumni-firm">And More</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team" aria-labelledby="team-h">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2 class="sec-title" id="team-h">Association Leadership</h2>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/claudia-costas-president/400/267" alt="Claudia Costas" class="team-photo" loading="lazy" width="400" height="267">
+        <div class="team-body">
+          <p class="team-name">Claudia Costas</p>
+          <p class="team-role">President</p>
+          <p class="team-program">GBD, Year 4</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/guillermo-gubert-vp/400/267" alt="Guillermo Gubert Ferrer" class="team-photo" loading="lazy" width="400" height="267">
+        <div class="team-body">
+          <p class="team-name">Guillermo Gubert Ferrer</p>
+          <p class="team-role">Vice-President</p>
+          <p class="team-program">GBD, Year 2</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/berta-mateu-challenge/400/267" alt="Berta Mateu" class="team-photo" loading="lazy" width="400" height="267">
+        <div class="team-body">
+          <p class="team-name">Berta Mateu</p>
+          <p class="team-role">Co-Head, Real Estate Challenge</p>
+          <p class="team-program">GBD, Year 3</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/cesc-gavagnach-challenge/400/267" alt="Cesc Gavagnach Jam" class="team-photo" loading="lazy" width="400" height="267">
+        <div class="team-body">
+          <p class="team-name">Cesc Gavagnach Jam</p>
+          <p class="team-role">Co-Head, Real Estate Challenge</p>
+          <p class="team-program">GBD, Year 3</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/mario-navarro-events/400/267" alt="Mario Navarro" class="team-photo" loading="lazy" width="400" height="267">
+        <div class="team-body">
+          <p class="team-name">Mario Navarro</p>
+          <p class="team-role">Head of Events</p>
+          <p class="team-program">BBA, Year 3</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="https://picsum.photos/seed/carla-cuatrecasas-marketing/400/267" alt="Carla Cuatrecasas" class="team-photo" loading="lazy" width="400" height="267">
+        <div class="team-body">
+          <p class="team-name">Carla Cuatrecasas</p>
+          <p class="team-role">Head of Marketing</p>
+          <p class="team-program">BBA, Year 3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2 class="sec-title" id="contact-h">Get Involved</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <p class="contact-label">For Firms</p>
+        <h3 class="contact-title">Partner With EREA</h3>
+        <p class="contact-body">
+          Gain structured access to ESADE's most committed real estate and finance students. Set a challenge brief, interact directly with teams, and identify talent before the recruiting cycle begins.
+        </p>
+        <a href="mailto:claudia.costas@alumni.esade.edu" class="btn btn-primary">Reach Out</a>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          claudia.costas@alumni.esade.edu
+        </div>
+      </div>
+      <div class="contact-card">
+        <p class="contact-label">For Students</p>
+        <h3 class="contact-title">Join the Association</h3>
+        <p class="contact-body">
+          EREA recruits ESADE students with a genuine interest in real estate as a financial discipline. Members gain direct access to senior industry professionals and the ESADE Alumni Real Estate Club.
+        </p>
+        <a href="https://www.instagram.com/esade.realestate" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Follow on Instagram</a>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+          linkedin.com/company/esade-real-estate
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <strong>ESADE Real Estate Association</strong><br>
+      ESADE Business and Law School, Barcelona
+    </div>
+    <ul class="footer-links" aria-label="Footer navigation">
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#partners">Partners</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-social" aria-label="Social media">
+      <a href="https://www.instagram.com/esade.realestate" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram @esade.realestate">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+          <circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/company/esade-real-estate" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="sticky-cta" aria-label="Quick contact bar">
+  <span class="sticky-cta-label">ESADE Real Estate Association</span>
+  <div class="sticky-cta-actions">
+    <a href="mailto:claudia.costas@alumni.esade.edu" class="btn btn-ghost btn-sm">Email Us</a>
+    <a href="#contact" class="btn btn-primary btn-sm">Partner With Us</a>
+  </div>
+</div>
+
+<script>
+  /* --- burger --- */
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('nav-links');
+  burger.addEventListener('click', function () {
+    var open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* --- scroll reveal --- */
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function (el) { revealObs.observe(el); });
+
+  /* --- sticky cta --- */
+  var stickyCta = document.getElementById('sticky-cta');
+  var heroSection = document.querySelector('.hero');
+  var heroObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      stickyCta.classList.toggle('shown', !e.isIntersecting);
+    });
+  }, { threshold: 0 });
+  heroObs.observe(heroSection);
+</script>
+</body>
+</html>
